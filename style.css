@@ -1,6 +1,9 @@
 * {
     box-sizing: border-box;
 }
+/*
+    MAIN
+*/
 
 body {
     width: 100vw;
@@ -10,13 +13,32 @@ body {
     background-image: url(assets/paper.jpg);
 
     display: flex;
+    flex-direction: row;
+}
+
+.border-box {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.resized-body {
+    flex-basis: 1;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 1080px;
+
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+/*
+    TITLE
+*/
+
 #title-bar {
-    height: 60px;
     width: 100vw;
     
     flex-grow: 0;
@@ -31,6 +53,7 @@ body {
     font-weight: normal;
     font-family: MrsEavesSmallCaps;
     color: #58170D;
+    margin: 2px;
 }
 
 .body-seperator {
@@ -40,10 +63,14 @@ body {
     background-color: #58170D;
 }
 
+/*
+    BODY
+*/
+
 
 #main-body {
     max-height: 100vh;
-    width: 100vw;
+    width: 100%;
     
     flex-grow: 1;
     display: flex;
@@ -61,8 +88,9 @@ body {
 }
 
 .body-part {
-    flex: 1;
-    flex-basis: 50%;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
 
     display: flex;
     justify-content: center;
@@ -92,12 +120,191 @@ body {
 }
 
 .body-image {
+
     display: flex;
     justify-content: center;
     align-items: center;
+    object-fit: fill;
 }
 
 .body-image > img {
-    height: 100px;
-    width: auto;
+    max-width: 100%;
+}
+
+/*
+    CARD
+*/
+
+.card {
+    height: 90%;
+    width: 270px;
+    margin: 10px;
+    overflow: hidden;
+
+    background-image: url(assets/paper2.jpg);
+    background-color: rgba(255,255,255,0.5);
+    background-blend-mode: lighten;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 7px 7px 14px #252525;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: rgba(255,255,255,0);
+    transition: 0.3s;
+}
+
+.about {
+    background-image: url(assets/about.png);
+}
+
+.events {
+    background-image: url(assets/events.png);
+}
+
+.gallery {
+    background-image: url(assets/gallery.png);
+}
+
+.newsletter {
+    background-image: url(assets/newsletter.png);
+}
+
+.card .card-title {
+    font-size: 36px;
+    color: #58170D;
+    font-family: MrsEavesSmallCaps;
+
+    margin: 5px;
+    text-align: center;
+}
+
+.card .card-body {
+    opacity: 0;
+    height: 0px;
+    padding: 15px;
+
+    color: black;
+    font-family: Bookmania;
+    text-align: justify;
+   
+
+    transition: 0.3s;
+}
+
+.card-main > .body-seperator {
+    width: 94%;
+    margin-left: 3%;
+    visibility: hidden;
+}
+
+.card:hover .body-seperator {
+    visibility: visible;
+}
+
+.card .card-main {
+    background-color: rgba(255,255,255,0);
+    transition: 0.3s;
+}
+
+.card:hover .card-main {
+    background-color: rgba(255,255,255,1);
+    background-image: url(assets/paper2.jpg);
+    transition: 0.3s;
+}
+
+.card:hover .card-body {
+    opacity: 1;
+    visibility: visible;
+    height: 148px;
+    transition: 0.3s;
+}
+
+/*
+    MODAL
+*/
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    background-blend-mode: darken;
+    background-image: url(assets/paper.jpg);
+    background-color: rgba(0,0,0,0.9);
+    
+
+    background-size: cover;
+    background-position: center;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.modal.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s;
+}
+
+.modal .resized-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal .modal-title-bar {
+    width: 100%;
+    position: relative;
+
+    font-size: 48px;
+    font-weight: normal;
+    font-family: MrsEavesSmallCaps;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 64px;
+}
+
+.modal .modal-title {
+    text-align: center;
+    flex-grow: 1;
+    margin-left: auto;
+}
+
+.modal .modal-title-bar .modal-close-button {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+
+}
+
+.modal .modal-title-bar .modal-close-button .material-icons{
+    font-size: 64px;
+}
+
+.modal .body-seperator {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: white;
+}
+
+.modal .modal-body {
+    flex-grow: 1;
 }
