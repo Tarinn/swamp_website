@@ -228,6 +228,66 @@ body {
 }
 
 /*
+    TRANSITION
+*/
+
+.transition-layer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+}
+
+.transition-layer .bg-layer {
+    position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translateY(-50%) translateX(-2%);
+		height: 100%;
+		width: 2500%;
+		background: url(assets/ink.png) no-repeat 0 0;
+		background-size: 100% 100%;
+}
+
+.transition-layer.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.transition-layer.opening .bg-layer {
+    animation: transition-sequence .8s steps(24);
+	animation-fill-mode: forwards;
+}
+
+.transition-layer.closing .bg-layer {
+    animation: transition-sequence-reverse .8s steps(24);
+	animation-fill-mode: forwards;
+}
+
+@keyframes transition-sequence {
+	0% {
+		transform: translateY(-50%) translateX(-2%);
+	}
+	100% {
+   		transform: translateY(-50%) translateX(-98%);
+	}
+}
+
+@keyframes transition-sequence-reverse {
+	0% {
+		transform: translateY(-50%) translateX(-98%);
+	}
+	100% {
+   		transform: translateY(-50%) translateX(-2%);
+	}
+}
+
+/*
     MODAL
 */
 
@@ -237,6 +297,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
+    z-index: 3;
 
     background-blend-mode: darken;
     background-image: url(assets/paper.jpg);
@@ -259,7 +320,7 @@ body {
 .modal.visible {
     opacity: 1;
     visibility: visible;
-    transition: 0.3s;
+    transition: 0.8s;
 }
 
 .modal .resized-body {
@@ -307,4 +368,8 @@ body {
 
 .modal .modal-body {
     flex-grow: 1;
+}
+
+.modal .main-text {
+    color: white;
 }
